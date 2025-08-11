@@ -4,6 +4,19 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Playfair_Display, Manrope } from 'next/font/google';
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const manrope = Manrope({ 
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Mousa Cars — Luxury Car Rentals in Arabia & Türkiye',
@@ -16,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
       <body>
         <TooltipProvider>
           <Navbar />

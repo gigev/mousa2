@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -38,6 +38,8 @@ const Navbar = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="top" aria-label="Mobile navigation" className="h-auto">
+                <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">Navigate to different sections of the website</SheetDescription>
                 <nav className="flex flex-col gap-6 pt-4">
                   <SheetClose asChild>
                     <Link href="/" className={navLinkClass("/")}>Home</Link>

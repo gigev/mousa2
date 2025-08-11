@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ["Playfair Display", "serif"],
-				sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+				display: ["var(--font-playfair)", "Playfair Display", "serif"],
+				sans: ["var(--font-manrope)", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

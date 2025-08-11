@@ -101,36 +101,63 @@ const Contacts = () => {
           </article>
 
           <article className="surface p-6 lg:col-span-2">
-            <h2 className="font-display text-xl mb-4">Rental Conditions</h2>
-            <div className="space-y-4 text-sm text-muted-foreground">
-              <div>
-                <h3 className="text-foreground font-medium mb-2">Driver Requirements</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Valid driver's license (minimum 2 years)</li>
-                  <li>Passport or national ID</li>
-                  <li>Minimum age: 25 years</li>
-                  <li>Clean driving record</li>
-                </ul>
+            <h2 className="font-display text-xl mb-4">Rental Conditions (Full)</h2>
+            <div className="grid md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-foreground font-medium">Requirements & Eligibility</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Valid driver’s license (minimum 2 years)</li>
+                    <li>Passport/ID required at pickup</li>
+                    <li>Minimum age depends on vehicle class</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-foreground font-medium">Insurance & Coverage</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Comprehensive insurance with standard excess</li>
+                    <li>Optional zero-excess coverage available</li>
+                    <li>Damage due to misuse is not covered</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-foreground font-medium">Deposits & Payments</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Refundable security deposit held on card</li>
+                    <li>Credit/debit cards and bank transfers accepted</li>
+                    <li>VAT and local taxes may apply</li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3 className="text-foreground font-medium mb-2">Insurance & Security</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Comprehensive insurance included</li>
-                  <li>Security deposit: $500–$2000 (vehicle dependent)</li>
-                  <li>Fully refundable upon return</li>
-                  <li>Additional coverage options available</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-foreground font-medium mb-2">Usage Terms</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Daily mileage: 200 km included</li>
-                  <li>Additional km: $0.50–$1.00 per km</li>
-                  <li>Fuel: Return with same level</li>
-                  <li>No smoking in vehicles</li>
-                </ul>
+
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-foreground font-medium">Mileage, Fuel & Usage</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Daily mileage allowance; extras billed per km</li>
+                    <li>Return with same fuel level or refueling fee applies</li>
+                    <li>No off-road, racing, or towing permitted</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-foreground font-medium">Delivery, Drivers & Fines</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Citywide delivery/collection on request</li>
+                    <li>Additional drivers must be registered</li>
+                    <li>Traffic fines and Salik/HGS are renter’s responsibility</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-foreground font-medium">Cancellations & Assistance</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Free cancellation window; late cancellations may incur fees</li>
+                    <li>No-show policy applies after scheduled pickup time</li>
+                    <li>24/7 roadside assistance for mechanical issues</li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <p className="mt-4 text-xs text-muted-foreground">Full conditions are provided on your rental agreement. Please contact us for bespoke arrangements.</p>
           </article>
         </div>
       </section>
