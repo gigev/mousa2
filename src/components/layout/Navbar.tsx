@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <header className="w-full sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display text-lg tracking-wide">
+        <Link href="/" className="font-display text-xl tracking-wide">
           Mousa <span className="text-primary">Cars</span>
         </Link>
 
