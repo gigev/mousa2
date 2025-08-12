@@ -65,6 +65,17 @@ const Map: React.FC<MapProps> = ({ height = "h-64 md:h-72" }) => {
         </div>
       )}
 
+      {/* Google Maps Link */}
+      <a 
+        href="https://maps.google.com/?q=41.650950,41.636008" 
+        target="_blank" 
+        rel="noopener"
+        className="absolute top-4 right-4 z-10 p-2 bg-background/80 backdrop-blur-sm rounded-lg shadow-lg hover:bg-background/90 transition-colors"
+        aria-label="Open location in Google Maps"
+      >
+        <img src="/location-icon.svg" alt="Location" className="w-5 h-5" />
+      </a>
+
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-background/10" />
     </div>
   );
