@@ -62,6 +62,8 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        containScroll: "trimSnaps",
+        dragFree: false,
       },
       plugins
     )
@@ -140,6 +142,10 @@ const Carousel = React.forwardRef<
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"
+          style={{
+            touchAction: 'pan-y pinch-zoom',
+            WebkitOverflowScrolling: 'touch',
+          }}
           {...props}
         >
           {children}
@@ -165,6 +171,10 @@ const CarouselContent = React.forwardRef<
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
+        style={{
+          touchAction: 'pan-x',
+          WebkitOverflowScrolling: 'touch',
+        }}
         {...props}
       />
     </div>
@@ -188,6 +198,9 @@ const CarouselItem = React.forwardRef<
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
+      style={{
+        touchAction: 'pan-y pinch-zoom',
+      }}
       {...props}
     />
   )
@@ -206,7 +219,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
           ? "-left-12 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -214,6 +227,9 @@ const CarouselPrevious = React.forwardRef<
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      style={{
+        touchAction: 'manipulation',
+      }}
       {...props}
     >
       <ArrowLeft className="h-4 w-4" />
@@ -243,6 +259,9 @@ const CarouselNext = React.forwardRef<
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
+      style={{
+        touchAction: 'manipulation',
+      }}
       {...props}
     >
       <ArrowRight className="h-4 w-4" />

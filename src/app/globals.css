@@ -59,6 +59,26 @@
 @layer base {
   * { @apply border-border; }
   body { @apply bg-background text-foreground antialiased font-sans; }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    /* Prevent zoom on input focus */
+    input, textarea, select {
+      font-size: 16px !important;
+    }
+    
+    /* Improve touch targets */
+    button, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Prevent unwanted zooming on images */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }
 
 @layer components {
@@ -88,4 +108,11 @@
 
   /* Clamp utilities for consistent card headings */
   .clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  
+  /* Mobile carousel improvements */
+  @media (max-width: 768px) {
+    .hover-scale:hover { 
+      transform: none; 
+    }
+  }
 }
