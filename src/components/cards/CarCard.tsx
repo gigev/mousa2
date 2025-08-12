@@ -57,7 +57,7 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
         <div className="px-5 pb-5">
           <Button asChild variant="hero" size="sm">
-            <Link href={`/cars/${car.slug}`} scroll={false}>
+            <Link href={`/cars/${car.slug}`}>
               View Details
             </Link>
           </Button>
