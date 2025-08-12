@@ -1,18 +1,63 @@
 'use client';
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 
 const Contacts = () => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "");
-    toast({ title: "Request sent", description: `Thank you, ${name}. Our team will contact you shortly.` });
-    form.reset();
+    setIsSubmitting(true);
+
+    try {
+      const form = e.currentTarget;
+      const data = new FormData(form);
+      
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "0d898472-4e09-461e-93f9-29743a0ab380",
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+          subject: "New Car Rental Request - Mousa Cars",
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({ 
+          title: "Request sent successfully!", 
+          description: `Thank you, ${data.get("name")}. Our team will contact you shortly.` 
+        });
+        form.reset();
+      } else {
+        toast({ 
+          title: "Error sending request", 
+          description: "Please try again or contact us directly.", 
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({ 
+        title: "Error sending request", 
+        description: "Please try again or contact us directly.", 
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -47,7 +92,9 @@ const Contacts = () => {
               By submitting, you agree to our rental conditions below.
             </div>
             <div className="flex gap-3">
-              <Button type="submit" variant="premium">Send Request</Button>
+              <Button type="submit" variant="premium" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Request"}
+              </Button>
               <Button asChild variant="hero">
                 <a href="mailto:booking@mousacars.com" aria-label="Email Mousa Cars">Email Us</a>
               </Button>
@@ -107,7 +154,7 @@ const Contacts = () => {
                 <div>
                   <h3 className="text-foreground font-medium">Requirements & Eligibility</h3>
                   <ul className="list-disc pl-5 space-y-1">
-                    <li>Valid driver’s license (minimum 2 years)</li>
+                    <li>Valid driver's license (minimum 2 years)</li>
                     <li>Passport/ID required at pickup</li>
                     <li>Minimum age depends on vehicle class</li>
                   </ul>
@@ -144,7 +191,7 @@ const Contacts = () => {
                   <ul className="list-disc pl-5 space-y-1">
                     <li>Citywide delivery/collection on request</li>
                     <li>Additional drivers must be registered</li>
-                    <li>Traffic fines and Salik/HGS are renter’s responsibility</li>
+                    <li>Traffic fines and Salik/HGS are renter's responsibility</li>
                   </ul>
                 </div>
                 <div>

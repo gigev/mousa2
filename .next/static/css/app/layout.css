@@ -1035,6 +1035,9 @@ video {
 .h-svh {
   height: 100svh;
 }
+.h-96 {
+  height: 24rem;
+}
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1053,8 +1056,8 @@ video {
 .min-h-\[80px\] {
   min-height: 80px;
 }
-.min-h-\[calc\(100vh-4rem\)\] {
-  min-height: calc(100vh - 4rem);
+.min-h-\[calc\(100vh-10rem\)\] {
+  min-height: calc(100vh - 10rem);
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1062,14 +1065,8 @@ video {
 .min-h-svh {
   min-height: 100svh;
 }
-.min-h-\[calc\(100vh-6rem\)\] {
-  min-height: calc(100vh - 6rem);
-}
-.min-h-\[calc\(100vh-rem\)\] {
-  min-height: calc(100vh - rem);
-}
-.min-h-\[calc\(100vh-10rem\)\] {
-  min-height: calc(100vh - 10rem);
+.min-h-\[calc\(100vh-4rem\)\] {
+  min-height: calc(100vh - 4rem);
 }
 .w-0 {
   width: 0px;
@@ -1140,6 +1137,21 @@ video {
 }
 .w-px {
   width: 1px;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-24 {
+  width: 6rem;
+}
+.w-40 {
+  width: 10rem;
+}
+.w-48 {
+  width: 12rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1387,6 +1399,11 @@ video {
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
 .overflow-auto {
   overflow: auto;
 }
@@ -1425,6 +1442,9 @@ video {
 }
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.rounded {
+  border-radius: 0.25rem;
 }
 .rounded-t-\[10px\] {
   border-top-left-radius: 10px;
