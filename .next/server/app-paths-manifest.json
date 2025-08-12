@@ -1,9 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/car-tour/page": "app/car-tour/page.js",
-  "/cars/[slug]/page": "app/cars/[slug]/page.js",
-  "/cartour/page": "app/cartour/page.js",
-  "/catalog/page": "app/catalog/page.js",
-  "/contacts/page": "app/contacts/page.js",
   "/page": "app/page.js"
 }
