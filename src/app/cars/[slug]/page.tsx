@@ -1,15 +1,25 @@
 'use client';
 
+import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { getCarBySlug, getRelatedCars } from "@/data/cars";
 import CarCard from "@/components/cards/CarCard";
+import BookingModal from "@/components/BookingModal";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function CarDetailsPage() {
   const { slug } = useParams();
   const carSlug = Array.isArray(slug) ? slug[0] : slug;
   const car = carSlug ? getCarBySlug(carSlug) : undefined;
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   if (!car) {
     return (
@@ -27,14 +37,36 @@ export default function CarDetailsPage() {
     <div>
       <section className="container mx-auto px-4 py-10">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="surface overflow-hidden">
-            <img 
-              src={car.images} 
-              alt={`${car.brand} ${car.model} ${car.year} interior and exterior`} 
-              className="w-full h-full object-cover" 
-              loading="eager"
-              decoding="sync"
-            />
+          <div className="surface overflow-hidden rounded-xl">
+            {car.images.length > 1 ? (
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {car.images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img 
+                          src={image} 
+                          alt={`${car.brand} ${car.model} ${car.year} - Image ${index + 1}`} 
+                          className="w-full h-full object-cover" 
+                          loading={index === 0 ? "eager" : "lazy"}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4" />
+                <CarouselNext className="right-4" />
+              </Carousel>
+            ) : (
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={car.images[0]} 
+                  alt={`${car.brand} ${car.model} ${car.year} interior and exterior`} 
+                  className="w-full h-full object-cover" 
+                  loading="eager"
+                />
+              </div>
+            )}
           </div>
 
           <div>
@@ -47,7 +79,13 @@ export default function CarDetailsPage() {
                   <div className="text-sm text-muted-foreground">From</div>
                   <div className="text-2xl font-semibold">${car.pricePerDay}/day</div>
                 </div>
-                <Button asChild variant="premium" size="lg"><Link href="/contacts">Book Now</Link></Button>
+                <Button 
+                  variant="premium" 
+                  size="lg"
+                  onClick={() => setIsBookingModalOpen(true)}
+                >
+                  Book Now
+                </Button>
               </div>
             </div>
 
@@ -72,6 +110,7 @@ export default function CarDetailsPage() {
           </div>
         </div>
       </section>
+
       {related.length > 0 && (
         <section className="container mx-auto px-4 pb-16">
           <h2 className="font-display text-2xl mb-6">Related Cars</h2>
@@ -80,6 +119,13 @@ export default function CarDetailsPage() {
           </div>
         </section>
       )}
+
+      {/* Booking Modal */}
+      <BookingModal 
+        car={car}
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </div>
   );
-}
+};

@@ -1,5 +1,13 @@
 
 export type StockStatus = "In Stock" | "Coming Soon";
+
+export interface Reservation {
+  startDate: string; // ISO date string
+  endDate: string;   // ISO date string
+  customerName: string;
+  customerEmail: string;
+}
+
 export interface Car {
   id: string;
   slug: string;
@@ -8,8 +16,9 @@ export interface Car {
   year: number;
   pricePerDay: number;
   stockStatus: StockStatus;
-  images: string;
+  images: string[]; // Changed from string to string[]
   features: string[];
+  reservations: Reservation[];
 }
 
 export const cars: Car[] = [
@@ -20,9 +29,27 @@ export const cars: Car[] = [
     year: 2024,
     pricePerDay: 520,
     stockStatus: "In Stock",
-    images: "/cars/car-sclass.jpg",
+    images: [
+      "/cars/car-sclass.jpg",
+      "/cars/car-7series.jpg",
+      "/cars/car-a8.jpg"     
+    ],
     features: ["Premium leather", "Executive rear seats", "Burmester audio", "Panoramic roof"],
     slug: "1",
+    reservations: [
+      {
+        startDate: "2025-08-12",
+        endDate: "2025-08-18",
+        customerName: "Ahmed Al Mansouri",
+        customerEmail: "ahmed@example.com"
+      },
+      {
+        startDate: "2025-08-20",
+        endDate: "2025-08-28",
+        customerName: "Fatima Zahra",
+        customerEmail: "fatima@example.com"
+      }
+    ]
   },
   {
     id: "2",
@@ -31,9 +58,22 @@ export const cars: Car[] = [
     year: 2023,
     pricePerDay: 480,
     stockStatus: "In Stock",
-    images: "/cars/car-7series.jpg",
+    images: [
+      "/cars/car-7series.jpg",
+      "/cars/car-7series-interior.jpg",
+      "/cars/car-7series-dashboard.jpg",
+      "/cars/car-7series-rear.jpg"
+    ],
     features: ["Massage seats", "Ambient lighting", "Bowers & Wilkins audio", "Driver assistance pro"],
     slug: "2",
+    reservations: [
+      {
+        startDate: "2024-01-20",
+        endDate: "2024-01-22",
+        customerName: "Mehmet Yılmaz",
+        customerEmail: "mehmet@example.com"
+      }
+    ]
   },
   {
     id: "3",
@@ -42,9 +82,15 @@ export const cars: Car[] = [
     year: 2022,
     pricePerDay: 440,
     stockStatus: "In Stock",
-    images: "/cars/car-a8.jpg",
+    images: [
+      "/cars/car-a8.jpg",
+      "/cars/car-a8-interior.jpg",
+      "/cars/car-a8-dashboard.jpg",
+      "/cars/car-a8-rear.jpg"
+    ],
     features: ["Quattro AWD", "Valcona leather", "Matrix LED", "Four-zone climate"],
     slug: "3",
+    reservations: []
   },
   {
     id: "4",
@@ -53,9 +99,15 @@ export const cars: Car[] = [
     year: 2023,
     pricePerDay: 420,
     stockStatus: "Coming Soon",
-    images: "/cars/car-ls.jpg",
+    images: [
+      "/cars/car-ls.jpg",
+      "/cars/car-ls-interior.jpg",
+      "/cars/car-ls-dashboard.jpg",
+      "/cars/car-ls-rear.jpg"
+    ],
     features: ["Mark Levinson audio", "Quiet cabin", "Rear ottoman seats", "Advanced safety"],
     slug: "4",
+    reservations: []
   },
   {
     id: "5",
@@ -64,25 +116,80 @@ export const cars: Car[] = [
     year: 2024,
     pricePerDay: 560,
     stockStatus: "In Stock",
-    images: "/cars/car-vogue.jpg",
-    features: ["Terrain Response 2", "Executive class seating", "Meridian audio", "Air suspension"],
+    images: [
+      "/cars/car-vogue.jpg",
+      "/cars/car-vogue-interior.jpg",
+      "/cars/car-vogue-dashboard.jpg",
+      "/cars/car-vogue-rear.jpg"
+    ],
+    features: ["Terrain Response", "Meridian audio", "Windsor leather", "All-terrain capability"],
     slug: "5",
+    reservations: []
   },
   {
     id: "6",
     brand: "Porsche",
-    model: "Cayenne",
-    year: 2022,
-    pricePerDay: 500,
+    model: "Panamera",
+    year: 2023,
+    pricePerDay: 580,
     stockStatus: "In Stock",
-    images: "/cars/car-cayenne.jpg",
-    features: ["Sport Chrono", "Bose audio", "Adaptive air suspension", "Advanced infotainment"],
+    images: [
+      "/cars/car-cayenne.jpg",
+      "/cars/car-panamera-interior.jpg",
+      "/cars/car-panamera-dashboard.jpg",
+      "/cars/car-panamera-rear.jpg"
+    ],
+    features: ["Sport Chrono", "PASM suspension", "Burmester audio", "PDK transmission"],
     slug: "6",
-  },
+    reservations: []
+  }
 ];
 
 export const getCarBySlug = (slug: string) => cars.find((c) => c.slug === slug);
 export const getRelatedCars = (car: Car) => cars.filter((c) => c.id !== car.id && (c.brand === car.brand || Math.abs(c.pricePerDay - car.pricePerDay) <= 80)).slice(0, 3);
+
+// Utility functions for reservation management
+export const isDateRangeAvailable = (car: Car, startDate: string, endDate: string): boolean => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  
+  return !car.reservations.some(reservation => {
+    const reservationStart = new Date(reservation.startDate);
+    const reservationEnd = new Date(reservation.endDate);
+    
+    // Check if there's any overlap
+    return (start <= reservationEnd && end >= reservationStart);
+  });
+};
+
+export const getAvailableDates = (car: Car, startDate: Date, endDate: Date): Date[] => {
+  const availableDates: Date[] = [];
+  const current = new Date(startDate);
+  
+  while (current <= endDate) {
+    const dateStr = current.toISOString().split('T')[0];
+    if (isDateRangeAvailable(car, dateStr, dateStr)) {
+      availableDates.push(new Date(current));
+    }
+    current.setDate(current.getDate() + 1);
+  }
+  
+  return availableDates;
+};
+
+export const addReservation = (carId: string, reservation: Reservation): Car | null => {
+  const carIndex = cars.findIndex(c => c.id === carId);
+  if (carIndex === -1) return null;
+  
+  // Check if the date range is available
+  if (!isDateRangeAvailable(cars[carIndex], reservation.startDate, reservation.endDate)) {
+    return null;
+  }
+  
+  // Add the reservation
+  cars[carIndex].reservations.push(reservation);
+  return cars[carIndex];
+};
 
 export const uniqueBrands = Array.from(new Set(cars.map((c) => c.brand))).sort();
 export const years = Array.from(new Set(cars.map((c) => c.year))).sort((a, b) => b - a);
