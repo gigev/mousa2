@@ -36,33 +36,35 @@ const CarCard = ({ car }: CarCardProps) => {
       <CardContent className="p-0">
         <div className="aspect-[16/10] w-full overflow-hidden relative">
           {car.images.length > 1 ? (
-            <Carousel className="w-full group">
-              <CarouselContent>
-                {car.images.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <img
-                      src={image}
-                      alt={`${car.brand} ${car.model} ${car.year} — luxury rental car in catalog - Image ${index + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-150 ease-out"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      style={{
-                        willChange: 'transform',
-                        touchAction: 'pan-x',
-                        WebkitUserSelect: 'none',
-                        userSelect: 'none'
-                      }}
-                    />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              {/* Показываем стрелки только если больше одной фотографии */}
-              {car.images.length > 1 && (
-                <>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </>
-              )}
-            </Carousel>
+            <div className="max-h-[400px] overflow-auto">
+              <Carousel className="w-full group">
+                <CarouselContent>
+                  {car.images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <img
+                        src={image}
+                        alt={`${car.brand} ${car.model} ${car.year} — luxury rental car in catalog - Image ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-150 ease-out"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        style={{
+                          willChange: 'transform',
+                          touchAction: 'pan-x',
+                          WebkitUserSelect: 'none',
+                          userSelect: 'none'
+                        }}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                {/* Показываем стрелки только если больше одной фотографии */}
+                {car.images.length > 1 && (
+                  <>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </>
+                )}
+              </Carousel>
+            </div>
           ) : (
             <img
               src={car.images[0]}
