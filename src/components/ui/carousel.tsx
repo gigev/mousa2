@@ -168,7 +168,7 @@ const CarouselContent = React.forwardRef<
         ref={ref}
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "md:-ml-4" : "md:-mt-4 flex-col", // изменено: отрицательные маргины только на md+
           className
         )}
         style={{
@@ -195,7 +195,7 @@ const CarouselItem = React.forwardRef<
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "md:pl-4" : "md:pt-4", // изменено: отступы только на md+
         className
       )}
       style={{
@@ -221,8 +221,8 @@ const CarouselPrevious = React.forwardRef<
       className={cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "-left-12 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "md:-left-12 md:top-1/2 md:-translate-y-1/2 left-2 top-2"
+          : "md:-top-12 md:left-1/2 md:-translate-x-1/2 md:rotate-90 top-2 left-2",
         className
       )}
       disabled={!canScrollPrev}
