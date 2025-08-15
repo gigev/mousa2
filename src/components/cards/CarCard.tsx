@@ -37,7 +37,7 @@ const CarCard = ({ car }: CarCardProps) => {
         <div className="aspect-[16/10] w-full overflow-hidden relative">
           {car.images.length > 1 ? (
             <div className="max-h-[400px] overflow-auto">
-              <Carousel className="w-full group">
+              <Carousel opts={{ dragFree: true, skipSnaps: true }} className="w-full group">
                 <CarouselContent>
                   {car.images.map((image, index) => (
                     <CarouselItem key={index}>
