@@ -52,14 +52,20 @@ const CarCard = ({ car }: CarCardProps) => {
                         WebkitTouchCallout: 'none',
                         WebkitUserSelect: 'none',
                         userSelect: 'none',
-                        transform: isMobile ? 'none' : undefined
+                        transform: isMobile ? 'none' : undefined,
+                        willChange: 'transform'
                       }}
                     />
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              {/* Показываем стрелки только если больше одной фотографии */}
+              {car.images.length > 1 && (
+                <>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </>
+              )}
             </Carousel>
           ) : (
             <img
