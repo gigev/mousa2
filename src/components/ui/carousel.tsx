@@ -172,7 +172,7 @@ const CarouselContent = React.forwardRef<
           className
         )}
         style={{
-          touchAction: 'pan-x',
+          touchAction: 'auto',
           WebkitOverflowScrolling: 'touch',
         }}
         {...props}
