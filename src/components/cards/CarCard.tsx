@@ -52,7 +52,7 @@ const CarCard = ({ car }: CarCardProps) => {
                         WebkitTouchCallout: 'none',
                         WebkitUserSelect: 'none',
                         userSelect: 'none',
-                        // Убираем любые transform/scale на мобильных
+                        // Явно убираем transform на мобильных
                         ...(isMobile ? { transform: 'none' } : {})
                       }}
                     />
