@@ -47,11 +47,13 @@ const CarCard = ({ car }: CarCardProps) => {
                         !isMobile ? 'group-hover:scale-[1.03]' : ''
                       }`}
                       loading={index === 0 ? "eager" : "lazy"}
-                      style={{ 
+                      style={{
                         touchAction: 'pan-x',
                         WebkitTouchCallout: 'none',
                         WebkitUserSelect: 'none',
-                        userSelect: 'none'
+                        userSelect: 'none',
+                        // Убираем любые transform/scale на мобильных
+                        ...(isMobile ? { transform: 'none' } : {})
                       }}
                     />
                   </CarouselItem>
