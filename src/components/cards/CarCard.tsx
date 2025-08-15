@@ -48,7 +48,6 @@ const CarCard = ({ car }: CarCardProps) => {
                         loading={index === 0 ? "eager" : "lazy"}
                         style={{
                           willChange: 'transform',
-                          touchAction: 'pan-x',
                           WebkitUserSelect: 'none',
                           userSelect: 'none'
                         }}
