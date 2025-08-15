@@ -60,9 +60,9 @@ export const cars: Car[] = [
     stockStatus: "In Stock",
     images: [
       "/cars/car-7series.jpg",
-      "/cars/car-7series-interior.jpg",
-      "/cars/car-7series-dashboard.jpg",
-      "/cars/car-7series-rear.jpg"
+      "/cars/car-7series.jpg",
+      "/cars/car-a8.jpg",
+      "/cars/car-7series.jpg"
     ],
     features: ["Massage seats", "Ambient lighting", "Bowers & Wilkins audio", "Driver assistance pro"],
     slug: "2",
@@ -84,9 +84,9 @@ export const cars: Car[] = [
     stockStatus: "In Stock",
     images: [
       "/cars/car-a8.jpg",
-      "/cars/car-a8-interior.jpg",
-      "/cars/car-a8-dashboard.jpg",
-      "/cars/car-a8-rear.jpg"
+      "/cars/car-7series.jpg",
+      "/cars/car-a8.jpg",
+      "/cars/car-a8.jpg"
     ],
     features: ["Quattro AWD", "Valcona leather", "Matrix LED", "Four-zone climate"],
     slug: "3",
@@ -101,9 +101,9 @@ export const cars: Car[] = [
     stockStatus: "Coming Soon",
     images: [
       "/cars/car-ls.jpg",
-      "/cars/car-ls-interior.jpg",
-      "/cars/car-ls-dashboard.jpg",
-      "/cars/car-ls-rear.jpg"
+      "/cars/car-7series.jpg",
+      "/cars/car-7series.jpg",
+      "/cars/car-ls.jpg"
     ],
     features: ["Mark Levinson audio", "Quiet cabin", "Rear ottoman seats", "Advanced safety"],
     slug: "4",
@@ -118,9 +118,9 @@ export const cars: Car[] = [
     stockStatus: "In Stock",
     images: [
       "/cars/car-vogue.jpg",
-      "/cars/car-vogue-interior.jpg",
-      "/cars/car-vogue-dashboard.jpg",
-      "/cars/car-vogue-rear.jpg"
+      "/cars/car-vogue.jpg",
+      "/cars/car-7series.jpg",
+      "/cars/car-7series.jpg"
     ],
     features: ["Terrain Response", "Meridian audio", "Windsor leather", "All-terrain capability"],
     slug: "5",
@@ -135,9 +135,9 @@ export const cars: Car[] = [
     stockStatus: "In Stock",
     images: [
       "/cars/car-cayenne.jpg",
-      "/cars/car-panamera-interior.jpg",
-      "/cars/car-panamera-dashboard.jpg",
-      "/cars/car-panamera-rear.jpg"
+      "/cars/car-vogue.jpg",
+      "/cars/car-cayenne.jpg",
+      "/cars/car-7series.jpg"
     ],
     features: ["Sport Chrono", "PASM suspension", "Burmester audio", "PDK transmission"],
     slug: "6",
