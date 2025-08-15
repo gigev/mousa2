@@ -36,7 +36,7 @@ const CarCard = ({ car }: CarCardProps) => {
       <CardContent className="p-0">
         <div className="aspect-[16/10] w-full overflow-hidden relative">
           {car.images.length > 1 ? (
-            <Carousel className="w-full">
+            <Carousel className="w-full group">
               <CarouselContent>
                 {car.images.map((image, index) => (
                   <CarouselItem key={index}>
@@ -52,8 +52,7 @@ const CarCard = ({ car }: CarCardProps) => {
                         WebkitTouchCallout: 'none',
                         WebkitUserSelect: 'none',
                         userSelect: 'none',
-                        // Явно убираем transform на мобильных
-                        ...(isMobile ? { transform: 'none' } : {})
+                        transform: isMobile ? 'none' : undefined
                       }}
                     />
                   </CarouselItem>
