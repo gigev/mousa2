@@ -43,17 +43,13 @@ const CarCard = ({ car }: CarCardProps) => {
                     <img
                       src={image}
                       alt={`${car.brand} ${car.model} ${car.year} — luxury rental car in catalog - Image ${index + 1}`}
-                      className={`w-full h-full object-cover transition-transform duration-300 ${
-                        !isMobile ? 'group-hover:scale-[1.03]' : ''
-                      }`}
+                      className="w-full h-full object-cover transition-transform duration-150 ease-out"
                       loading={index === 0 ? "eager" : "lazy"}
                       style={{
+                        willChange: 'transform',
                         touchAction: 'pan-x',
-                        WebkitTouchCallout: 'none',
                         WebkitUserSelect: 'none',
-                        userSelect: 'none',
-                        transform: isMobile ? 'none' : undefined,
-                        willChange: 'transform'
+                        userSelect: 'none'
                       }}
                     />
                   </CarouselItem>
