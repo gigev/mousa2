@@ -37,9 +37,9 @@ const CarCard = ({ car }: CarCardProps) => {
         <div className="aspect-[16/10] w-full overflow-hidden relative">
           {car.images.length > 1 ? (
             <Carousel className="w-full">
-              <CarouselContent className="-ml-0">
+              <CarouselContent>
                 {car.images.map((image, index) => (
-                  <CarouselItem key={index} className="pl-0">
+                  <CarouselItem key={index}>
                     <img
                       src={image}
                       alt={`${car.brand} ${car.model} ${car.year} — luxury rental car in catalog - Image ${index + 1}`}
@@ -59,8 +59,8 @@ const CarCard = ({ car }: CarCardProps) => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className={`${isMobile ? 'left-1' : 'left-2'} h-6 w-6 z-10`} />
-              <CarouselNext className={`${isMobile ? 'right-1' : 'right-2'} h-6 w-6 z-10`} />
+              <CarouselPrevious />
+              <CarouselNext />
             </Carousel>
           ) : (
             <img
