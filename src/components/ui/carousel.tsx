@@ -143,7 +143,7 @@ const Carousel = React.forwardRef<
           role="region"
           aria-roledescription="carousel"
           style={{
-            touchAction: 'pan-y pinch-zoom',
+            touchAction: 'auto',
             WebkitOverflowScrolling: 'touch',
           }}
           {...props}
